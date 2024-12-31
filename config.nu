@@ -13,7 +13,8 @@ $env.config.footer_mode = 21 # always, never, number_of_rows, auto
 # Never show expanded table content by default (infeasible especially with long content like $env.PATH)
 $env.config.hooks.display_output = 'table'
 # Use a uniform, ordered yyyy-MM-dd… date time format
-$env.config.datetime_format.normal = '%F %T %z'
+$env.config.datetime_format.normal = '%Y-%m-%d %H:%M:%S %z' # equivalent '%F %T %z'
+$env.config.datetime_format.table = '%Y-%m-%d %H:%M:%S %z' # equivalent '%F %T %z'
 $env.config.completions.algorithm = 'fuzzy'
 
 source `config-nusc-completions.nu`
@@ -39,8 +40,6 @@ source `./nu_scripts/sourced/misc/base64_encode.nu`
 
 $env.config.color_config.bool = {|x| if $x { 'green' } else { 'dark_red' } }
 $env.config.color_config.filesize = {|x| if $x == 0b { 'dark_gray' } else if $x < 1mb { 'cyan_bold' } else { 'blue_bold' } }
-$env.config.datetime_format.normal = '%Y-%m-%d %H:%M:%S %z'
-$env.config.datetime_format.table = '%Y-%m-%d %H:%M:%S %z'
 
 use repl-command-info
 repl-command-info --apply
