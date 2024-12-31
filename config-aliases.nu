@@ -1,8 +1,12 @@
 # winget
 alias up = winget upgrade
 def ups [...name: string] {
-  for $n in $name {
-    winget upgrade $n
+  if ($name | is-empty) {
+    winget upgrade
+  } else {
+    for $n in $name {
+      winget upgrade $n
+    }
   }
 }
 
