@@ -1,3 +1,4 @@
+alias te = table -e
 alias write = print 'Did you mean to write `save`?'
 
 alias ll = ls -al
