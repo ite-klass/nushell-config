@@ -69,6 +69,12 @@ def "dl yt firefox" [url: string] {
 def "dl firefox titled" [title: string, url: string] {
 	dl --cookies-from-browser firefox --output $"($title) %(title)s [%(id)s].%(ext)s" $"($url)"
 }
+def "dl timed" [begin: string, end: string, url: string] {
+	dl --download-sections $"*($begin)-($end)" $url
+}
+def "dl section" [sectionname: string, url: string] {
+	dl --download-sections $"($sectionname)*" $url
+}
 
 # ffmpeg
 alias ff = ffmpeg -hide_banner
