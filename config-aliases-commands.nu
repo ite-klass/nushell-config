@@ -48,6 +48,10 @@ def ups [...name: string] {
   }
 }
 
+def "ups dotnet-tools" [] {
+	dotnet tool update --global --all
+}
+
 # yt-dlp
 alias dl = yt-dlp
 alias dlup = yt-dlp --update
