@@ -13,7 +13,7 @@ let multiple_completers = {|spans|
         # winget https://learn.microsoft.com/en-us/windows/package-manager/winget/tab-completion
         # winget https://github.com/microsoft/winget-cli/blob/master/doc/Completion.md
         # winget - nushell has `commandline get-cursor` we could use, but word identification would be missing -> inconsistency breakage
-        winget => { winget complete --commandline ($spans | str join " ") --word ($spans | last) --position 999 | lines }
+#        winget => { winget complete --commandline ($spans | str join " ") --word ($spans | last) --position 999 | lines }
         #winget => {|| dotnet-suggest get --executable winget -- ($spans | skip 1 | str join " ") | lines | skip 1 }
 
         # dotnet System.CommandLine https://learn.microsoft.com/en-us/dotnet/standard/commandline/tab-completion
