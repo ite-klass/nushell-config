@@ -99,3 +99,9 @@ def "ff mp4" [filepath: path] {
     let target = ($filepath | path parse | update stem {|x| $"($x.stem)_x264"} | update extension "mp4" | path join)
     ff -i $filepath -c:a aac -c:v libx264 -pix_fmt yuv420p $target
 }
+
+def "nu conf diff" [] {
+  let defaults = nu -n -c "$env.config = {}; $env.config | reject color_config keybindings menus | to nuon" | from nuon | transpose key default
+  let current = $env.config | reject color_config keybindings menus | transpose key current
+  $current | merge $defaults | where $it.current != $it.default
+}
