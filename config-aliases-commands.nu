@@ -1,6 +1,8 @@
 # Prevent Windows from opening Wordpad when accidentally writing `write` instead of `save`
 alias write = print 'Did you mean to write `save`?'
 
+alias te = table -e
+
 alias ll = ls -al
 # latest GitHub release - repo form: account/repo
 def "gh latest" [repo: string] { http head $'https://github.com/($repo)/releases/latest/' --redirect-mode manual | where name == location | get value.0 | path split | last }
