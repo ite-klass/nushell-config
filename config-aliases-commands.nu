@@ -1,3 +1,4 @@
+# Prevent Windows from opening Wordpad when accidentally writing `write` instead of `save`
 alias write = print 'Did you mean to write `save`?'
 
 alias ll = ls -al
