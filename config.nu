@@ -23,7 +23,7 @@ source `config-aliases-commands.nu`
 source `config-menus.nu`
 
 $env.EDITOR = 'micro'
-$env.VISUAL = '"C:\Program Files\Notepad++\notepad++.exe"'
+$env.VISUAL = 'C:\Program Files\Notepad++\notepad++.exe'
 
 source nav.nu
 
