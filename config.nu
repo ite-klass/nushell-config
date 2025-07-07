@@ -15,6 +15,7 @@ $env.config.hooks.display_output = 'table'
 # Use a uniform, ordered yyyy-MM-dd… date time format
 $env.config.datetime_format.normal = '%F %T %z'
 $env.config.datetime_format.table = '%F %T %z'
+$env.config.completions.algorithm = 'fuzzy'
 
 source `config-nusc-completions.nu`
 source `config-aliases-commands.nu`
