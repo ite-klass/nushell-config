@@ -22,9 +22,35 @@ def call-if-old [filepath: path, fn: closure] {
 mkdir $nu.cache-dir
 $nu.vendor-autoload-dirs | last | mkdir $in
 $nu.user-autoload-dirs | last | mkdir $in
-call-if-old $'($nu.user-autoload-dirs | last)/starship-init.nu' {|filepath| starship init nu | save -f $filepath }
-call-if-old $'($nu.user-autoload-dirs | last)/starship-completions.nu' {|filepath| starship completions nushell | save -f $filepath }
-call-if-old $'($nu.user-autoload-dirs | last)/jj-completions.nu' {|filepath| jj util completion nushell | save -f $filepath }
-#call-if-old $'($nu.cache-dir)/pueue-completions.nu' {|filepath| pueue completions nushell | save -f $filepath }
-
-#zoxide init nushell | save -f ~/.zoxide.nu
+[
+  {
+    enabled: true
+    path: $'($nu.user-autoload-dirs | last)/starship-init.nu'
+    condition: { which starship | is-not-empty }
+    command: {|filepath| starship init nu | save -f $filepath }
+  }
+  {
+    enabled: true
+    path: $'($nu.user-autoload-dirs | last)/starship-completions.nu'
+    condition: { which starship | is-not-empty }
+    command: {|filepath| starship completions nushell | save -f $filepath }
+  }
+  {
+    enabled: true
+    path: $'($nu.user-autoload-dirs | last)/jj-completions.nu'
+    condition: { which jj | is-not-empty }
+    command: {|filepath| jj util completion nushell | save -f $filepath }
+  }
+  {
+    enabled: false
+    path: $'($nu.cache-dir)/pueue-completions.nu'
+    condition: { which pueue | is-not-empty }
+    command: {|filepath| pueue completions nushell | save -f $filepath }
+  }
+  {
+    enabled: false
+    path: 'config-zoxide.nu'
+    condition: { which zoxide | is-not-empty }
+    command: {|filepath| zoxide init nushell | save -f $filepath }
+  }
+] | each {|x| if ($x.enabled and (do $x.condition)) { call-if-old $x.path $x.command } } | ignore
